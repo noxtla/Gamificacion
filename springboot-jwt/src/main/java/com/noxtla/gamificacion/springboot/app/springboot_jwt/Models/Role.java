@@ -1,29 +1,26 @@
-package com.noxtla.gamificacion.springboot.app.springboot_jwt.Models;
+package com.noxtla.gamificacion.springboot.app.springboot_jwt.models;
 
 import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-
 @Entity
 @Table(name = "roles")
-public class Role {  // Nombre en singular
+public class Role {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)  // Quitado el punto y coma
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(unique = true, nullable = false)
     private String name;
 
-    @ManyToMany(mappedBy = "roles")  // Relación inversa
-    private Set<UsersJWT> users = new HashSet<>();  // Inicialización y nombre singular
+    @ManyToMany(mappedBy = "roles")
+    private Set<User> users = new HashSet<>();
 
-    // Constructor vacío REQUERIDO
-    public Role() {
-    }
+    // Constructores
+    public Role() {}
 
-    // Constructor útil
     public Role(String name) {
         this.name = name;
     }
@@ -45,11 +42,11 @@ public class Role {  // Nombre en singular
         this.name = name;
     }
 
-    public Set<UsersJWT> getUsers() {
+    public Set<User> getUsers() {
         return users;
     }
 
-    public void setUsers(Set<UsersJWT> users) {
+    public void setUsers(Set<User> users) {
         this.users = users;
     }
 }
